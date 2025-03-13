@@ -1,6 +1,6 @@
 version: 2
 
 sources:
-  - name: snowflake
+  - name: postgres_source
     tables:
-      - name: sample_table
+      - name: open_alex
