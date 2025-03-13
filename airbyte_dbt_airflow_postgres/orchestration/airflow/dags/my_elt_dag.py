@@ -17,6 +17,8 @@ from airflow.utils.trigger_rule import TriggerRule
 AIRFLOW_AIRBYTE_CONN_ID = os.getenv("AIRFLOW_AIRBYTE_CONN") # The name of the Airflow connection to get connection information for Airbyte.
 AIRBYTE_CONNECTION_ID = os.getenv("AIRBYTE_CONN_ID") # the Airbyte ConnectionId UUID between a source and destination.
 DBT_DIR = "/opt/airflow/dbt_project"
+AIRFLOW_AIRBYTE_CONN_ID = "Mongodb_2_Postgres"
+AIRBYTE_CONNECTION_ID = "2b03d2ad-9e1d-48c7-8341-299cfc2d7ab4"
 
 default_args = {
     'owner': 'airflow',

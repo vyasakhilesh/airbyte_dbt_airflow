@@ -4,3 +4,4 @@ sources:
   - name: postgres_source
     tables:
       - name: open_alex
+      - name: airbyte_raw_Core_Data
