@@ -10,6 +10,7 @@ from airflow.sensors.python import PythonSensor
 from airflow.providers.airbyte.operators.airbyte import AirbyteTriggerSyncOperator
 from airflow.providers.airbyte.sensors.airbyte import AirbyteJobSensor
 from airflow.providers.airbyte.hooks.airbyte import AirbyteHook
+from airflow.utils.trigger_rule import TriggerRule
 
 
 
@@ -34,7 +35,7 @@ def check_airbyte_health():
 with DAG(
     dag_id='ELT_DAG',
     default_args=default_args,
-    schedule='@daily',
+    schedule=None,
     ) as dag:
 
    start_pipeline_task = EmptyOperator(task_id="start_pipeline")
@@ -58,20 +59,23 @@ with DAG(
    wait_for_sync_completion_task = AirbyteJobSensor(
        task_id='airbyte_check_sync',
        airbyte_conn_id=AIRFLOW_AIRBYTE_CONN_ID,
-       airbyte_job_id=trigger_airbyte_sync_task.output
-   )
+       airbyte_job_id=trigger_airbyte_sync_task.output,
+       trigger_rule=TriggerRule.ALL_SUCCESS,  # Only proceed if the sync task is successful.
+    )
 
    run_dbt_check_task = BashOperator(
        task_id='run_dbt_precheck',
        bash_command='pwd && dbt debug && dbt list',
-       cwd=DBT_DIR
-   )
+       cwd=DBT_DIR,
+       trigger_rule=TriggerRule.ALL_SUCCESS,  # Execute only if all upstream tasks are successful.
+    )
 
    run_dbt_model_task = BashOperator(
        task_id='run_dbt_model',
        bash_command='dbt run',
-       cwd=DBT_DIR
-   )
+       cwd=DBT_DIR,
+       trigger_rule=TriggerRule.ALL_SUCCESS,  # Ensure all checks pass before running models.
+    )
 
    start_pipeline_task >> airbyte_precheck_task >> trigger_airbyte_sync_task \
     >> [wait_for_sync_completion_task, run_dbt_check_task] \

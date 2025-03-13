@@ -3,7 +3,7 @@ dbt_project:
     dev:
 
       type: postgres
-      host: "{{ env_var('DBT_POSTGRES_HOST', 'localhost') }}"
+      host: "{{ env_var('DBT_POSTGRES_HOST', 'postgres_db') }}"
       port: "{{ env_var('DBT_POSTGRES_PORT', 5432) }}"
       user: admin
       password: "{{ env_var('DBT_POSTGRES_PASSWORD', 'password') }}"

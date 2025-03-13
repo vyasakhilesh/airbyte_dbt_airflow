@@ -1,10 +1,10 @@
 from setuptools import find_packages, setup
 
 setup(
-    name="airbyte-dbt-airflow-snowflake",
+    name="airbyte-dbt-airflow-postgre",
     packages=find_packages(),
     install_requires=[
-        "dbt-snowflake",
+        "dbt-postgres",
         "apache-airflow[airbyte]",
         "apache-airflow",
     ],
