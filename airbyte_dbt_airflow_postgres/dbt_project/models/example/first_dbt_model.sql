@@ -11,7 +11,7 @@
 
 with source_data as (
 
-    select * from {{ source('postgres_source', 'open_alex') }}
+    select * from {{ source('public', 'open_alex') }}
 
 )
 

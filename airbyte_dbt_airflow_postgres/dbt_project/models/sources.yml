@@ -1,7 +1,8 @@
 version: 2
 
 sources:
-  - name: postgres_source
+  - name: public
     tables:
       - name: open_alex
       - name: airbyte_raw_Core_Data
+      - name: sample_table

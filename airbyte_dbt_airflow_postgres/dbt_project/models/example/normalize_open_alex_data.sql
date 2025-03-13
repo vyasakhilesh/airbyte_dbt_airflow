@@ -3,7 +3,7 @@
 -- Extract and normalize fields from the JSONB column
 WITH parsed_data AS (
     SELECT
-        id,                                   -- Retain the base 'id' column
+        data->>'id' AS id,                                   -- Retain the base 'id' column
         data->>'doi' AS doi,                 -- Extract 'doi' from the JSONB column
         data->>'type' AS article_type,       -- Extract 'type'
         data->>'title' AS title,             -- Extract 'title'
@@ -15,7 +15,7 @@ WITH parsed_data AS (
         data->>'updated' AS updated_at,      -- Extract 'updated'
         data->>'publication_date' AS publication_date, -- Extract 'publication_date'
         jsonb_array_elements(data->'topics') AS topics -- Expand JSONB arrays for topics
-    FROM {{ source('article_db', 'open_alex') }}
+    FROM {{ source('public', 'open_alex') }}
 ),
 
 -- Flatten topics array into individual rows

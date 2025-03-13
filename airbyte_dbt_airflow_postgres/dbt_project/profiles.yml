@@ -1,7 +1,6 @@
 dbt_project:
   outputs:
     dev:
-
       type: postgres
       host: "{{ env_var('DBT_POSTGRES_HOST', 'postgres_db') }}"
       port: "{{ env_var('DBT_POSTGRES_PORT', 5432) }}"
