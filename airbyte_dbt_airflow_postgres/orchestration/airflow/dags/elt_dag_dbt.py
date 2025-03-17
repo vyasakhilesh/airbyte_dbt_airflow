@@ -35,7 +35,7 @@ def check_airbyte_health():
     return is_healthy
 
 with DAG(
-    dag_id='ELT_DAG',
+    dag_id='ELT_DAG_DBT',
     default_args=default_args,
     schedule=None,
     ) as dag:
