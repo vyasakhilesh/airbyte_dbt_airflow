@@ -19,7 +19,7 @@ default_args = {
 
 
 with DAG(
-    dag_id='ELT_DAG_DBT_Merge',
+    dag_id='T_DAG_DBT',
     default_args=default_args,
     schedule=None,
     ) as dag:

@@ -35,7 +35,7 @@ def check_airbyte_health():
     return is_healthy
 
 with DAG(
-    dag_id='ELT_DAG_MongoDb',
+    dag_id='EL_DAG_SFTP_2_MongoDb',
     default_args=default_args,
     schedule=None,
     ) as dag:

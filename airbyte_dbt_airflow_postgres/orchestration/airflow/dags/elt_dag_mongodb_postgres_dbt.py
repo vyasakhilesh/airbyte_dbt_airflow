@@ -35,7 +35,7 @@ def check_airbyte_health():
     return is_healthy
 
 with DAG(
-    dag_id='ELT_DAG_DBT',
+    dag_id='ELT_Mongodb_2_Postgres',
     default_args=default_args,
     schedule=None,
     ) as dag:
