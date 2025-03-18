@@ -14,10 +14,9 @@ from airflow.utils.trigger_rule import TriggerRule
 
 
 
-# AIRFLOW_AIRBYTE_CONN_ID = os.getenv("AIRFLOW_AIRBYTE_CONN") # The name of the Airflow connection to get connection information for Airbyte.
+AIRFLOW_AIRBYTE_CONN_ID = os.getenv("AIRFLOW_AIRBYTE_CONN") # The name of the Airflow connection to get connection information for Airbyte.
 # AIRBYTE_CONNECTION_ID = os.getenv("AIRBYTE_CONN_ID") # the Airbyte ConnectionId UUID between a source and destination.
 # DBT_DIR = "/opt/airflow/dbt_project"
-AIRFLOW_AIRBYTE_CONN_ID = "SFTPBulk_2_MongoDB"
 AIRBYTE_CONNECTION_ID = "3e823a53-09bf-410d-8b44-c7aa7b333f54"
 
 default_args = {
